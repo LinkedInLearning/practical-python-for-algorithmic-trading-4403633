@@ -1,0 +1,5 @@
+scikit-learn<1.2.0
+bokeh==2.4.3
+backtesting
+matplotlib
+numpy<1.24.0
