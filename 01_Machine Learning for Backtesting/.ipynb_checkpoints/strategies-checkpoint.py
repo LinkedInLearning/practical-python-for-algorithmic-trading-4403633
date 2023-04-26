@@ -26,7 +26,8 @@ class SimpleClassificationUD(Strategy):
 
 
 class SimpleRegression(Strategy):
-    model = DecisionTreeRegressor(max_depth=15, random_state=42)
+    # model = DecisionTreeRegressor(max_depth=15, random_state=42)
+    model = None
     
     limit_buy = 1
     limit_sell = -5
@@ -37,7 +38,7 @@ class SimpleRegression(Strategy):
     def next(self):
         explanatory_today = self.data.df.iloc[-1:, :]
         forecast_tomorrow = self.model.predict(explanatory_today)[0]
-        
+
         # conditions to sell or buy
         if forecast_tomorrow > self.limit_buy and self.already_bought == False:
             self.buy()
@@ -96,6 +97,22 @@ class WalkForward(Regression):
 
         super().next()
         
+        
+class WalkForwardAnchored(Regression):
+    def next(self):
+
+        if len(self.data) < self.N_TRAIN:
+            return # we don't take any action and move on to the following day
+        
+        if len(self.data) % 200 != 0:
+            return super().next()
+        
+        X_train = self.data.df.iloc[:, :-1]
+        y_train = self.data.df.iloc[:, -1]
+
+        self.model.fit(X_train, y_train)
+
+        super().next()
         
         
 class RegressionAggresiveStopLoss(Strategy):
