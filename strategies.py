@@ -55,14 +55,14 @@ class Regression(Strategy):
     limit_buy = 1
     limit_sell = -5
 
-    N_TRAIN = 600
+    n_train = 600
 
     def init(self):
         self.model = DecisionTreeRegressor(max_depth=15, random_state=42)
         self.already_bought = False
         
-        X_train = self.data.df.iloc[:self.N_TRAIN, :-1]
-        y_train = self.data.df.iloc[:self.N_TRAIN, -1]
+        X_train = self.data.df.iloc[:self.n_train, :-1]
+        y_train = self.data.df.iloc[:self.n_train, -1]
         
         self.model.fit(X_train, y_train)
 
@@ -81,17 +81,17 @@ class Regression(Strategy):
             pass
         
         
-class WalkForward(Regression):
+class WalkForwardUnanchored(Regression):
     def next(self):
 
-        if len(self.data) < self.N_TRAIN:
+        if len(self.data) < self.n_train:
             return # we don't take any action and move on to the following day
         
         if len(self.data) % 200 != 0:
             return super().next()
         
-        X_train = self.data.df.iloc[-self.N_TRAIN:, :-1]
-        y_train = self.data.df.iloc[-self.N_TRAIN:, -1]
+        X_train = self.data.df.iloc[-self.n_train:, :-1]
+        y_train = self.data.df.iloc[-self.n_train:, -1]
 
         self.model.fit(X_train, y_train)
 
@@ -101,7 +101,7 @@ class WalkForward(Regression):
 class WalkForwardAnchored(Regression):
     def next(self):
 
-        if len(self.data) < self.N_TRAIN:
+        if len(self.data) < self.n_train:
             return # we don't take any action and move on to the following day
         
         if len(self.data) % 200 != 0:
@@ -121,7 +121,7 @@ class RegressionAggresiveStopLoss(Strategy):
     limit_buy = 1
     limit_sell = -5
 
-    N_TRAIN = 600
+    n_train = 600
     price_delta = .004
     
     n_days_stop_loss = 2
@@ -129,8 +129,8 @@ class RegressionAggresiveStopLoss(Strategy):
     
     def init(self):
         
-        X_train = self.data.df.iloc[:self.N_TRAIN, :-1]
-        y_train = self.data.df.iloc[:self.N_TRAIN, -1]
+        X_train = self.data.df.iloc[:self.n_train, :-1]
+        y_train = self.data.df.iloc[:self.n_train, -1]
 
         self.model.fit(X_train, y_train)
 
@@ -166,14 +166,14 @@ class RegressionAggresiveStopLoss(Strategy):
 class WalkForwardAggresiveStopLoss(RegressionAggresiveStopLoss):
     def next(self):
 
-        if len(self.data) < self.N_TRAIN:
+        if len(self.data) < self.n_train:
             return # we don't take any action and move on to the following day
         
         if len(self.data) % 200 != 0:
             return super().next()
         
-        X_train = self.data.df.iloc[-self.N_TRAIN:, :-1]
-        y_train = self.data.df.iloc[-self.N_TRAIN:, -1]
+        X_train = self.data.df.iloc[-self.n_train:, :-1]
+        y_train = self.data.df.iloc[-self.n_train:, -1]
 
         self.model.fit(X_train, y_train)
 
