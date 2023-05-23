@@ -18,8 +18,8 @@
   "screencastMode.onlyKeyboardShortcuts": true,
   "terminal.integrated.fontSize": 18,
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Visual Studio Dark",
+  "workbench.colorTheme": "Dracula",
   "workbench.fontAliasing": "antialiased",
-  "workbench.statusBar.visible": true,
+  "workbench.statusBar.visible": true
   // "editor.parameterHints.enabled": false
 }
