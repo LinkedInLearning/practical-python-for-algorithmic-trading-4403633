@@ -25,7 +25,14 @@
 	},
 	"extensions": [
 		"ms-python.python",
-		"ms-python.vscode-pylance"
+		"ms-python.vscode-pylance",
+		"bierner.docs-view",
+		"dracula-theme.theme-dracula",
+		"ms-toolsai.jupyter",
+		"ms-toolsai.vscode-jupyter-slideshow",
+		"ms-toolsai.jupyter-renderers",
+		"ms-toolsai.jupyter-keymap",
+		"ms-toolsai.vscode-jupyter-cell-tags"
 	],
 	"remoteUser": "vscode",
 	"onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc" //Set Terminal Prompt to $
