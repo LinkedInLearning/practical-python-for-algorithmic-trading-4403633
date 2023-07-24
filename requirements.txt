@@ -1,3 +1,5 @@
+future
+tabulate
 scikit-learn<1.2.0
 bokeh==2.4.3
 backtesting
@@ -8,3 +10,4 @@ yfinance
 plotly
 nbformat>=4.2.0
 openpyxl
+ipykernel
