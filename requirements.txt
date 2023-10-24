@@ -1,11 +1,11 @@
 future
 tabulate
-scikit-learn<1.2.0
+scikit-optimize
+scikit-learn
 bokeh==2.4.3
 backtesting
 matplotlib
 numpy<1.24.0
-scikit-optimize
 yfinance
 plotly
 nbformat>=4.2.0
