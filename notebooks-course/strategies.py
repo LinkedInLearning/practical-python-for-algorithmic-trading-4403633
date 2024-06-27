@@ -1,5 +1,6 @@
 from backtesting import Strategy
-from sklearn.tree import DecisionTreeRegressor
+#from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 
 class Regression(Strategy):
     limit_buy = 1
@@ -9,7 +10,8 @@ class Regression(Strategy):
     coef_retrain = 200
     
     def init(self):
-        self.model = DecisionTreeRegressor(max_depth=15, random_state=42)
+        #self.model = DecisionTreeRegressor(max_depth=15, random_state=42)
+        self.model = RandomForestRegressor(max_depth=15, random_state=42)
         self.already_bought = False
         
         X_train = self.data.df.iloc[:self.n_train, :-1]
