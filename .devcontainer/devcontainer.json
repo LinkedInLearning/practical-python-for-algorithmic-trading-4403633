@@ -33,7 +33,8 @@
 		"ms-toolsai.vscode-jupyter-slideshow",
 		"ms-toolsai.jupyter-renderers",
 		"ms-toolsai.jupyter-keymap",
-		"ms-toolsai.vscode-jupyter-cell-tags"
+		"ms-toolsai.vscode-jupyter-cell-tags",
+		"ms-vscode.live-server"
 	],
 	"remoteUser": "vscode",
 	"onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc" //Set Terminal Prompt to $
